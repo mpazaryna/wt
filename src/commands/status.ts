@@ -1,3 +1,5 @@
+import path from "node:path";
+import os from "node:os";
 import type { Command } from "commander";
 import React from "react";
 import { render } from "ink";
@@ -5,7 +7,7 @@ import { loadState } from "../core/state.js";
 import { isWorktreeDirty } from "../core/git.js";
 import { StatusDashboard, type DashboardRow } from "../ui/StatusDashboard.js";
 
-const STATE_PATH = new URL("../../.wt/state.json", `file://${process.env.HOME}/`).pathname;
+const STATE_PATH = path.join(os.homedir(), ".wt", "state.json");
 
 export function registerStatus(program: Command): void {
   program
